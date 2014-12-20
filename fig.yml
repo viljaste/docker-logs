@@ -1,0 +1,6 @@
+logs:
+  image: simpledrupalcloud/logs:latest
+  hostname: logs
+  ports:
+    - "80:80"
+    - "443:443"
