@@ -11,5 +11,7 @@
 {{ end }}
 
 <match docker.**>
-  type stdout
+  type elasticsearch
+  logstash_format true
+  flush_interval 10s
 </match>

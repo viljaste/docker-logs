@@ -16,5 +16,6 @@ VOLUME ["/logs/ssl/private"]
 
 EXPOSE 80
 EXPOSE 443
+EXPOSE 9200
 
 CMD ["/src/run.sh"]
