@@ -20,6 +20,7 @@ class logs::elasticsearch {
 
   file { '/opt/elasticsearch/config/elasticsearch.yml':
     ensure => present,
-    source => 'puppet:///modules/logs/opt/elasticsearch/config/elasticsearch.yml'
+    source => 'puppet:///modules/logs/opt/elasticsearch/config/elasticsearch.yml',
+    require => Exec['mv elasticsearch-1.4.2 /opt/elasticsearch']
   }
 }

@@ -20,6 +20,7 @@ class logs::kibana {
 
   file { '/opt/kibana/config/kibana.yml':
     ensure => present,
-    source => 'puppet:///modules/logs/opt/kibana/config/kibana.yml'
+    source => 'puppet:///modules/logs/opt/kibana/config/kibana.yml',
+    require => Exec['mv kibana-4.0.0-beta3 /opt/kibana']
   }
 }
