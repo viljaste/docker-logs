@@ -1,5 +1,7 @@
 # docker-logs
 
+Centralized logging for [Docker](https://docker.com/) containers.
+
 ## Run the container
 
 Using the `docker` command:
