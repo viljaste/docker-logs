@@ -12,7 +12,7 @@ class logs::kibana {
     require => File['/tmp/kibana-3.1.2.tar.gz']
   }
 
-  exec { 'rsync -avz kibana-3.1.2s/ /logs/data':
+  exec { 'rsync -avz kibana-3.1.2/ /logs/data':
     cwd => '/tmp',
     path => ['/usr/bin'],
     require => Exec['tar xzf kibana-3.1.2.tar.gz']
