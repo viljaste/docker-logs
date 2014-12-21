@@ -17,4 +17,9 @@ class logs::elasticsearch {
     path => ['/bin'],
     require => Exec['tar xzf elasticsearch-1.4.2.tar.gz']
   }
+
+  file { '/opt/elasticsearch/config/elasticsearch.yml':
+    ensure => present,
+    source => 'puppet:///modules/logs/opt/elasticsearch/config/elasticsearch.yml'
+  }
 }
