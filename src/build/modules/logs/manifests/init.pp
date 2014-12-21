@@ -4,4 +4,5 @@ class logs {
   require logs::fluentd
   require logs::elasticsearch
   require logs::httpd
+  require logs::kibana
 }
