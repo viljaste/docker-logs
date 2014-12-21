@@ -7,7 +7,9 @@ Using the `docker` command:
     CONTAINER="logs" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
+      -p 80:80 \
       -v /var/run/docker.sock:/var/run/docker.sock \
+      -v /var/lib/docker/containers:/var/lib/docker/containers \
       -d \
       simpledrupalcloud/logs:latest
 
