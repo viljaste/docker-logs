@@ -1,17 +1,20 @@
-{{ range $key, $value := . }}
+{{ range $key, $container := . }}
   <source>
     type tail
     format json
     time_key time
-    path /var/lib/docker/containers/{{ $value.ID }}/{{ $value.ID }}-json.log
-    pos_file /var/lib/docker/containers/{{ $value.ID }}/{{ $value.ID }}-json.log.pos
-    tag docker.container.{{ printf "%.*s" 12 $value.ID }}
+    path /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log
+    pos_file /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log.pos
+    tag docker.container.image.repository.{{ $container.Image.Repository }}
     rotate_wait 5
   </source>
 {{ end }}
 
-<match docker.**>
+<match docker.container.image.repository.httpd>
   type elasticsearch
   logstash_format true
+  include_time_key true
+  localtime false
+  time_format "%y-%m-%d %HH:%MM:%SS"
   flush_interval 10s
 </match>
