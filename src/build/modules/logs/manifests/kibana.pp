@@ -1,20 +1,25 @@
 class logs::kibana {
-  require logs::httpd
+  require logs::kibana::supervisor
 
-  file { '/tmp/kibana-3.1.2.tar.gz':
+  file { '/tmp/kibana-4.0.0-beta3.tar.gz':
     ensure => present,
-    source => 'puppet:///modules/logs/tmp/kibana-3.1.2.tar.gz'
+    source => 'puppet:///modules/logs/tmp/kibana-4.0.0-beta3.tar.gz'
   }
 
-  exec { 'tar xzf kibana-3.1.2.tar.gz':
+  exec { 'tar xzf kibana-4.0.0-beta3.tar.gz':
     cwd => '/tmp',
     path => ['/bin'],
-    require => File['/tmp/kibana-3.1.2.tar.gz']
+    require => File['/tmp/kibana-4.0.0-beta3.tar.gz']
   }
 
-  exec { 'rsync -avz kibana-3.1.2/ /logs/data':
+  exec { 'mv kibana-4.0.0-beta3 /opt/kibana':
     cwd => '/tmp',
-    path => ['/usr/bin'],
-    require => Exec['tar xzf kibana-3.1.2.tar.gz']
+    path => ['/bin'],
+    require => Exec['tar xzf kibana-4.0.0-beta3.tar.gz']
+  }
+
+  file { '/opt/kibana/config/kibana.yml':
+    ensure => present,
+    source => 'puppet:///modules/logs/opt/kibana/config/kibana.yml'
   }
 }
