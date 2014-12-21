@@ -1,5 +1,5 @@
 logs:
-  image: simpledrupalcloud/logs:latest
+  image: simpledrupalcloud/logs:dev
   hostname: logs
   ports:
     - "80:80"
