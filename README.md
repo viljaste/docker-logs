@@ -11,14 +11,13 @@ Using the `docker` command:
       -v /var/run/docker.sock:/var/run/docker.sock \
       -v /var/lib/docker/containers:/var/lib/docker/containers \
       -d \
-      simpledrupalcloud/logs:dev
+      simpledrupalcloud/logs:latest
 
 Using the `fig` command
 
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-logs.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout dev \
       && sudo fig up
 
 ## Build the image
@@ -26,8 +25,7 @@ Using the `fig` command
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-logs.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout dev \
-      && sudo docker build -t simpledrupalcloud/logs:dev . \
+      && sudo docker build -t simpledrupalcloud/logs:latest . \
       && cd -
 
 ## License
