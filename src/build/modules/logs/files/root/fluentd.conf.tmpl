@@ -5,12 +5,12 @@
     time_key time
     path /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log
     pos_file /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log.pos
-    tag docker.container.image.repository.{{ $container.Image.Repository }}
+    tag docker.container.{{ $container.ID }}
     rotate_wait 5
   </source>
 {{ end }}
 
-<match docker.container.image.repository.httpd>
+<match docker.**>
   type elasticsearch
   logstash_format true
   include_time_key true
