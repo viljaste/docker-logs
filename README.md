@@ -1,6 +1,6 @@
 # docker-logs
 
-Centralized logging for [Docker](https://docker.com/) containers.
+Centralized logging for [Docker](https://docker.com/) containers. Built on top of [docker-gen](https://github.com/jwilder/docker-gen), [Fluentd](http://www.fluentd.org/), [Elasticsearch](http://www.elasticsearch.org/) and [Kibana](http://www.elasticsearch.org/overview/kibana/).
 
 ## Run the container
 
