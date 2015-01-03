@@ -1,13 +1,15 @@
 {{ range $key, $container := . }}
-  <source>
-    type tail
-    format json
-    time_key time
-    path /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log
-    pos_file /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log.pos
-    tag docker.container.{{ $container.ID }}
-    rotate_wait 5
-  </source>
+  {{ if ne $container.Image.Repository "logs" }}
+    <source>
+      type tail
+      format json
+      time_key time
+      path /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log
+      pos_file /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log.pos
+      tag docker.container.{{ $container.ID }}
+      rotate_wait 5
+    </source>
+  {{ end }}
 {{ end }}
 
 <match docker.**>
@@ -16,5 +18,5 @@
   include_time_key true
   localtime false
   time_format "%y-%m-%d %HH:%MM:%SS"
-  flush_interval 10s
+  flush_interval 1s
 </match>
