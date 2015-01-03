@@ -35,7 +35,6 @@ Using the `fig` command
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-logs.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout dev \
       && sudo cp ./fig.yml /opt/logs.yml \
       && sudo cp ./logs.conf /etc/init/logs.conf \
       && cd -
