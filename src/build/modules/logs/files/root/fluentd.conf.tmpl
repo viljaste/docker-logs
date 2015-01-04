@@ -4,19 +4,21 @@
       type tail
       format json
       time_key time
+      time_format %Y-%m-%dT%T.%LZ
       path /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log
       pos_file /var/lib/docker/containers/{{ $container.ID }}/{{ $container.ID }}-json.log.pos
-      tag docker.container.{{ $container.ID }}
+      tag docker.container.{{ $container.Name }}
       rotate_wait 5
     </source>
+
+    <match docker.container.{{ $container.Name }}>
+      type elasticsearch
+      logstash_format true
+      #include_time_key true
+      index_name fluentd
+      type_name {{ $container.Name }}
+      buffer_type memory
+      flush_interval 1s
+    </match>
   {{ end }}
 {{ end }}
-
-<match docker.**>
-  type elasticsearch
-  logstash_format true
-  include_time_key true
-  localtime false
-  time_format "%y-%m-%d %HH:%MM:%SS"
-  flush_interval 1s
-</match>
