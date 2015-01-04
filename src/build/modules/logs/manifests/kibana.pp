@@ -1,4 +1,5 @@
 class logs::kibana {
+  require logs::elasticsearch
   require logs::kibana::supervisor
 
   file { '/tmp/kibana-4.0.0-beta3.tar.gz':
@@ -22,5 +23,18 @@ class logs::kibana {
     ensure => present,
     source => 'puppet:///modules/logs/opt/kibana/config/kibana.yml',
     require => Exec['mv kibana-4.0.0-beta3 /opt/kibana']
+  }
+
+  exec { 'mkdir -p /opt/elasticsearch/data/elasticsearch/nodes/0/indices':
+    path => ['/bin']
+  }
+
+  file { '/opt/elasticsearch/data/elasticsearch/nodes/0/indices/.kibana':
+    ensure => directory,
+    recurse => true,
+    purge => true,
+    force => true,
+    source => 'puppet:///modules/logs/opt/elasticsearch/data/elasticsearch/nodes/0/indices/.kiban',
+    require => Exec['mkdir -p /opt/elasticsearch/data/elasticsearch/nodes/0/indices']
   }
 }
