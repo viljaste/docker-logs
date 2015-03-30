@@ -13,7 +13,7 @@ Using the `docker` command:
       -v /var/run/docker.sock:/var/run/docker.sock \
       -v /var/lib/docker/containers:/var/lib/docker/containers \
       -d \
-      simpledrupalcloud/logs:dev
+      viljaste/logs:dev
 
 Using the `fig` command
 
@@ -29,7 +29,7 @@ Using the `fig` command
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-logs.git "${TMP}" \
       && cd "${TMP}" \
       && git checkout dev \
-      && sudo docker build -t simpledrupalcloud/logs:dev . \
+      && sudo docker build -t viljaste/logs:dev . \
       && cd -
 
 ## Start the container automatically
