@@ -1,5 +1,5 @@
 logs:
-  image: simpledrupalcloud/logs:latest
+  image: viljaste/logs:latest
   hostname: logs
   ports:
     - "80:80"
