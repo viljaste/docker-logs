@@ -1,6 +1,6 @@
 FROM viljaste/base:latest
 
-MAINTAINER Jürgen Viljaste <j.viljaste@gmaul.com>
+MAINTAINER Jürgen Viljaste <j.viljaste@gmail.com>
 
 ENV TERM xterm
 ENV DEBIAN_FRONTEND noninteractive

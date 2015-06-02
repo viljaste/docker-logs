@@ -1,6 +1,7 @@
 logs:
   image: viljaste/logs:latest
   hostname: logs
+  restart: always
   ports:
     - "80:80"
   volumes:
